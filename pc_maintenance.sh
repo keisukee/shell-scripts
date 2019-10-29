@@ -1,8 +1,7 @@
 #!/bin/bash
 # macが重いときに行う。CPUやらメモリやらのキャッシュなどを削除し、軽量にする。dockerのimageやコンテナ削除なども
 
-docker ps -aq | xargs docker rm # docker コンテナを一斉削除d
-docker images -aq | xargs docker rmi # docker image イメージを一斉削除
+docker system prune # 停止しているコンテナすべて, どのコンテナからも使われていないボリュームコンテナすべて, どのコンテナとも紐付いていないイメージすべてを削除
 sudo purge # メモリ解放
 du -sx / # ディスクの使用量をディレクトリごとに集計して表示するコマンド。チェック処理中に開放し忘れてた処理を開放するらしいので結果メモリの開放になる模様。アクティビティモニターでも確認できる
 sudo update_dyld_shared_cache -force # アプリとOSのキャッシュのアップデート
